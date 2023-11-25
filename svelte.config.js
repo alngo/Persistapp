@@ -7,6 +7,13 @@ const config = {
 	// for more information about preprocessors
 	preprocess: vitePreprocess(),
 
+	compilerOptions: {
+		// enable direct prop access for vitest unit tests. now you can do
+		// const comp = new Component({ target: document.body, props: {...} })
+		// comp.access_some_prop
+		accessors: process.env.TEST
+	},
+
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
 		// If your environment is not supported or you settled on a specific environment, switch out the adapter.
