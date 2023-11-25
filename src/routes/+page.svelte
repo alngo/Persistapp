@@ -1,5 +1,6 @@
 <script>
-	import Persistable from '$lib/components/Persistable.svelte';
+export const ssr = false;
+import Persistable from '$lib/components/Persistable.svelte';
 </script>
 
 <h1>Hello</h1>
