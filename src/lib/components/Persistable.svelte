@@ -1,5 +1,5 @@
 <script>
-	import { store } from './store';
+	import { store } from './store.ts';
 
 	const onClick = () => {
 		store.update((n) => n + 1);

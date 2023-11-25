@@ -8,10 +8,23 @@ describe('Persistable', () => {
 		expect(getByText('0')).toBeTruthy();
 	});
 
-	it('should increment to 1', () => {
+	it('should increment from 0 to 1', () => {
 		const { getByText } = render(Persistable);
+		const button = getByText('increment');
 		expect(getByText('0')).toBeTruthy();
-		getByText('increment').click();
+		button.click();
+		setTimeout(() => {
+			expect(getByText('1')).toBeTruthy();
+		}, 500);
+	});
+
+	it('should increment from 1 to 2', () => {
+		const { getByText } = render(Persistable);
+		const button = getByText('increment');
 		expect(getByText('1')).toBeTruthy();
+		button.click();
+		setTimeout(() => {
+			expect(getByText('2')).toBeTruthy();
+		}, 500);
 	});
 });
