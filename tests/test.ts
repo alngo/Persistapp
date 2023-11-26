@@ -43,3 +43,12 @@ test('number should be consistent across routes', async ({ page }) => {
 	await page.goto('/');
 	expect(page.getByText('2')).toBeTruthy();
 });
+
+test('it should save the value to local storage', async ({ page }) => {
+	await page.goto('/');
+	const button = page.getByRole('button', { name: 'increment' });
+	await button.click();
+	expect(page.getByText('1')).toBeTruthy();
+	await page.reload();
+	expect(page.getByText('1')).toBeTruthy();
+});
