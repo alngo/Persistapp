@@ -1,5 +1,4 @@
 <script>
-	export const ssr = false;
 	import Persistable from '$lib/components/Persistable.svelte';
 </script>
 
