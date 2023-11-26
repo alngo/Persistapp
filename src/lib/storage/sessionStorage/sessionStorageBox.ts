@@ -1,6 +1,6 @@
 import type { StorageBox } from '../storageBox.ts';
 
-export default class SessionStorageBox implements StorageBox {
+export default class SessionStorageBox implements StorageBox<string> {
 	private key: string;
 
 	constructor(key: string) {

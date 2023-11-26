@@ -11,9 +11,14 @@ export function persistable<T>(storage: StorageBox, initialValue: T): Persistabl
 		set(storedValue);
 	}
 
+	// remove set, persistable should give subscribe, add put get del
+
 	return {
 		subscribe,
-		set,
+		set: (value) => {
+			storage.put(value);
+			set(value);
+		},
 		update: (updater) => {
 			update((value) => {
 				const newValue = updater(value);
