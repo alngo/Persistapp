@@ -1,10 +1,11 @@
-import type {StorageBox} from './storageBox.ts';
+import type { StorageBox } from './storageBox.ts';
 
 export default class LocalStorageBox implements StorageBox {
 	private key: string;
 
 	constructor(key: string) {
-		this.key = key; }
+		this.key = key;
+	}
 
 	public add = (value: any) => {
 		this.put(value);
