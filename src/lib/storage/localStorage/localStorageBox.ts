@@ -1,4 +1,4 @@
-import type { StorageBox } from './storageBox.ts';
+import type { StorageBox } from '../storageBox.ts';
 
 export default class LocalStorageBox implements StorageBox {
 	private key: string;
