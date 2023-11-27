@@ -1,6 +1,6 @@
 export interface StorageBox<T> {
-	add: (value: T) => void;
-	put: (value: T) => void;
-	get: () => T | null;
-	del: (key: T) => void;
+	add: (value: T) => T;
+	put: (value: T, key?: any) => T;
+	get: (key?: any) => T | null;
+	del: (key: T) => T;
 }

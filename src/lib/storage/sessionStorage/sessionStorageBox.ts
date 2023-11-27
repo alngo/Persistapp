@@ -9,10 +9,12 @@ export default class SessionStorageBox implements StorageBox<string> {
 
 	public add = (value: any) => {
 		this.put(value);
+		return value;
 	};
 
 	public put = (value: any) => {
 		sessionStorage.setItem(this.key, JSON.stringify(value));
+		return value;
 	};
 
 	public get = (): string | null => {
@@ -22,5 +24,6 @@ export default class SessionStorageBox implements StorageBox<string> {
 
 	public del = (_: any) => {
 		sessionStorage.removeItem(this.key);
+		return '';
 	};
 }

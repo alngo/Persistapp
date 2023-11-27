@@ -2,11 +2,11 @@
 	import { store } from './store.ts';
 
 	const onIncrement = () => {
-		store.update((n) => n + 1);
+		store.put($store + 1);
 	};
 
 	const onReset = () => {
-		store.set(0);
+		store.put(0);
 	};
 </script>
 

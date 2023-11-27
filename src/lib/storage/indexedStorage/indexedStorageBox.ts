@@ -9,15 +9,18 @@ export default class IndexedStorageBox<T> implements StorageBox<T> {
 
 	public add = (value: T) => {
 		this.objectStore.add(value);
+		return '';
 	};
 
-	public add = (value: any) => {};
-
-	public put = (value: any) => {};
+	public put = (value: any) => {
+		return '';
+	};
 
 	public get = (): T | null => {
 		return null;
 	};
 
-	public del = (_: any) => {};
+	public del = (_: any) => {
+		return [];
+	};
 }
