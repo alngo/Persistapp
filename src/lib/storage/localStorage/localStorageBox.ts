@@ -1,6 +1,6 @@
 import type { StorageBox } from '../storageBox.ts';
 
-export default class LocalStorageBox implements StorageBox {
+export default class LocalStorageBox implements StorageBox<string> {
 	private key: string;
 
 	constructor(key: string) {
@@ -9,10 +9,12 @@ export default class LocalStorageBox implements StorageBox {
 
 	public add = (value: any) => {
 		this.put(value);
+		return value;
 	};
 
 	public put = (value: any) => {
 		localStorage.setItem(this.key, JSON.stringify(value));
+		return value;
 	};
 
 	public get = (): string | null => {
@@ -22,5 +24,6 @@ export default class LocalStorageBox implements StorageBox {
 
 	public del = (_: any) => {
 		localStorage.removeItem(this.key);
+		return '';
 	};
 }
