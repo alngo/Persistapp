@@ -31,7 +31,7 @@ export const openIdbStore = (
 	onabort?: (event: Event) => void
 ): Promise<IDBObjectStore> => {
 	return new Promise((resolve, reject) => {
-		const transaction = db.transaction([name], 'readwrite');
+		const transaction = db.transaction(name, 'readwrite');
 		transaction.onerror = (event: Event) => {
 			reject(event);
 		};
@@ -42,6 +42,17 @@ export const openIdbStore = (
 			if (onabort) {
 				onabort(event);
 			}
+		};
+	});
+};
+
+export const promise = <T>(idbRequest: IDBRequest): Promise<T> => {
+	return new Promise((resolve, reject) => {
+		idbRequest.onerror = (event: Event) => {
+			reject(event);
+		};
+		idbRequest.onsuccess = (event: Event) => {
+			resolve((event.target as IDBRequest).result);
 		};
 	});
 };
