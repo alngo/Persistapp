@@ -4,11 +4,11 @@ import type { StorageBox } from '$lib/storage/storageBox.ts';
 interface Persistable<T> extends Readable<T> {
 	add(value: T): void;
 	put(value: T, key?: any): void;
-	del(key: any): void;
+	del(key?: any): void;
 }
 
-export function persistable<T>(storage: StorageBox, initialValue: T, key?: any): Persistable<T> {
-	const { subscribe, set, update } = writable(initialValue);
+export function persistable<T>(storage: StorageBox<T>, initialValue: T): Persistable<T> {
+	const { subscribe, set } = writable(initialValue);
 
 	const storedValue = storage.get();
 	if (storedValue) {
