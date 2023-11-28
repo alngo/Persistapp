@@ -1,10 +1,16 @@
-import { writable, type Writable } from 'svelte/store';
+import { writable, type Readable } from 'svelte/store';
 import type { StorageBox } from '$lib/storage/storageBox.ts';
 
-interface Persistable<T> extends Writable<T> {}
+interface Persistable<T> extends Readable<T> {
+	add(value: T, key?: any): void;
+	put(value: T, key?: any): void;
+	del(key?: any): void;
+}
 
-export function persistable<T>(storage: StorageBox, initialValue: T): Persistable<T> {
-	const { subscribe, set, update } = writable(initialValue);
+export function persistable<T>(storage: StorageBox<T>, initialValue: T): Persistable<T> {
+	const { subscribe, set } = writable(initialValue);
+
+	storage.setCallback(set);
 
 	const storedValue = storage.get();
 	if (storedValue) {
@@ -13,13 +19,17 @@ export function persistable<T>(storage: StorageBox, initialValue: T): Persistabl
 
 	return {
 		subscribe,
-		set,
-		update: (updater) => {
-			update((value) => {
-				const newValue = updater(value);
-				storage.put(newValue);
-				return newValue;
-			});
+		add: (value: T, key?: any) => {
+			const newValue = storage.add(value, key);
+			set(newValue);
+		},
+		put: (value: T, key?: any) => {
+			const newValue = storage.put(value, key);
+			set(newValue);
+		},
+		del: (key?: any) => {
+			const newValue = storage.del(key);
+			set(newValue);
 		}
 	};
 }
