@@ -7,6 +7,8 @@ export default class LocalStorageBox implements StorageBox<string> {
 		this.key = key;
 	}
 
+	public setCallback = () => {};
+
 	public add = (value: any) => {
 		this.put(value);
 		return value;

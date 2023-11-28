@@ -15,7 +15,7 @@ export default class IdbObjectStore {
 		return objectStore;
 	};
 
-	public add = (value: any, key?: IDBValidKey) => {
+	public add = (value: any, key?: IDBValidKey): Promise<IDBValidKey> => {
 		return new Promise((resolve, reject) => {
 			const request = this.openTransaction().add(value, key);
 			request.onsuccess = () => {
@@ -27,7 +27,7 @@ export default class IdbObjectStore {
 		});
 	};
 
-	public put = (value: any, key?: IDBValidKey) => {
+	public put = (value: any, key?: IDBValidKey): Promise<IDBValidKey> => {
 		return new Promise((resolve, reject) => {
 			const request = this.openTransaction().put(value, key);
 			request.onsuccess = () => {
@@ -75,19 +75,19 @@ export default class IdbObjectStore {
 		});
 	};
 
-	public getAllWithKeys = () => {
+	public getAllWithKeys = (): Promise<Map<IDBValidKey, any>> => {
 		return new Promise((resolve, reject) => {
-			const array = new Array();
+			const map = new Map();
 			const request = this.openTransaction().openCursor();
 			request.onsuccess = () => {
 				let cursor = request.result;
 				if (cursor) {
 					let key = cursor.primaryKey;
 					let value = cursor.value;
-					array.push({ key, value });
+					map.set(key, value);
 					cursor.continue();
 				} else {
-					resolve(array);
+					resolve(map);
 				}
 			};
 			request.onerror = () => {

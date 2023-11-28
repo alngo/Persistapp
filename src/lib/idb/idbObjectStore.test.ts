@@ -82,9 +82,11 @@ describe('IdbObjectStore', async () => {
 	it('should get allWithKeys', async () => {
 		const store = new IdbObjectStore(idb, 'testObjectStore', 'readwrite');
 		const values = await store.getAllWithKeys();
-		expect(values).toEqual([
-			{ key: 1, value: 'first' },
-			{ key: 'key', value: 'value' }
-		]);
+		expect(values).toEqual(
+			new Map<IDBValidKey, any>([
+				[1, 'first'],
+				['key', 'value']
+			])
+		);
 	});
 });

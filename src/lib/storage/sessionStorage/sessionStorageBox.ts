@@ -7,6 +7,8 @@ export default class SessionStorageBox implements StorageBox<string> {
 		this.key = key;
 	}
 
+	public setCallback = () => {};
+
 	public add = (value: any) => {
 		this.put(value);
 		return value;

@@ -10,6 +10,8 @@ interface Persistable<T> extends Readable<T> {
 export function persistable<T>(storage: StorageBox<T>, initialValue: T): Persistable<T> {
 	const { subscribe, set } = writable(initialValue);
 
+	storage.setCallback(set);
+
 	const storedValue = storage.get();
 	if (storedValue) {
 		set(storedValue);
