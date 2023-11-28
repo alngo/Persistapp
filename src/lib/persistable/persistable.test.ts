@@ -10,7 +10,7 @@ describe('persistable test', () => {
 			return null;
 		}
 		del(_: string): void {}
-        setCallback(_: (value: string | null) => void): void {}
+		setCallback(_: (value: string | null) => void): void {}
 	}
 
 	const mockStorageBox = new MockStorageBox();

@@ -11,7 +11,7 @@ export default class IdbStorageBox<T> implements StorageBox<Map<IDBValidKey, T>>
 		this.data = new Map<IDBValidKey, any>();
 	}
 
-	private loadData = async () => {
+	public loadData = async () => {
 		this.data = await this.idbObjStore.getAllWithKeys().catch(() => new Map<IDBValidKey, any>());
 	};
 

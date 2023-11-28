@@ -8,7 +8,7 @@ describe('Idb', () => {
 			case 0:
 			case 1:
 				const db = (event.target as IDBOpenDBRequest).result;
-				const tr = db.createObjectStore('testObjStore', { autoincrement: true });
+				const tr = db.createObjectStore('testObjStore', { autoIncrement: true });
 				break;
 			default:
 				break;
