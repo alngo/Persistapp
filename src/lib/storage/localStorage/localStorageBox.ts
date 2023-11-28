@@ -17,12 +17,12 @@ export default class LocalStorageBox implements StorageBox<string> {
 		return value;
 	};
 
-	public get = (): string | null => {
+	public get = (): string => {
 		const value = localStorage.getItem(this.key);
-		return value ? JSON.parse(value) : value;
+		return value ? JSON.parse(value) : '';
 	};
 
-	public del = (_: any) => {
+	public del = () => {
 		localStorage.removeItem(this.key);
 		return '';
 	};

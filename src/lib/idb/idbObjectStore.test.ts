@@ -72,4 +72,19 @@ describe('IdbObjectStore', async () => {
 		expect(await store.get(2)).toBe(undefined);
 		expect(await store.getAll()).toEqual(['first', 'value']);
 	});
+
+	it('should get all values with key', async () => {
+		const store = new IdbObjectStore(idb, 'testObjectStore', 'readwrite');
+		const values = await store.getAllKeys();
+		expect(values).toEqual([1, 'key']);
+	});
+
+	it('should get allWithKeys', async () => {
+		const store = new IdbObjectStore(idb, 'testObjectStore', 'readwrite');
+		const values = await store.getAllWithKeys();
+		expect(values).toEqual([
+			{ key: 1, value: 'first' },
+			{ key: 'key', value: 'value' }
+		]);
+	});
 });

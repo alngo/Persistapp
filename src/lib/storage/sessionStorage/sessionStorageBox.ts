@@ -17,12 +17,12 @@ export default class SessionStorageBox implements StorageBox<string> {
 		return value;
 	};
 
-	public get = (): string | null => {
+	public get = (): string => {
 		const value = sessionStorage.getItem(this.key);
-		return value ? JSON.parse(value) : value;
+		return value ? JSON.parse(value) : '';
 	};
 
-	public del = (_: any) => {
+	public del = () => {
 		sessionStorage.removeItem(this.key);
 		return '';
 	};

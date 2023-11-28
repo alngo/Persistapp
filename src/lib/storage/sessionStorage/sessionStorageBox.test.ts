@@ -18,7 +18,7 @@ describe('LocalStorageBox', () => {
 		const box = new SessionStorageBox('test');
 		box.put('bar');
 		expect(box.get()).toBe('bar');
-		box.del('bar');
-		expect(box.get()).toBe(null);
+		box.del();
+		expect(box.get()).toBe('');
 	});
 });

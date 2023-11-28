@@ -2,7 +2,7 @@ import { writable, type Readable } from 'svelte/store';
 import type { StorageBox } from '$lib/storage/storageBox.ts';
 
 interface Persistable<T> extends Readable<T> {
-	add(value: T): void;
+	add(value: T, key?: any): void;
 	put(value: T, key?: any): void;
 	del(key?: any): void;
 }
@@ -17,8 +17,8 @@ export function persistable<T>(storage: StorageBox<T>, initialValue: T): Persist
 
 	return {
 		subscribe,
-		add: (value: T) => {
-			const newValue = storage.add(value);
+		add: (value: T, key?: any) => {
+			const newValue = storage.add(value, key);
 			set(newValue);
 		},
 		put: (value: T, key?: any) => {
